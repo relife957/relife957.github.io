@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://relife957.github.io/2020/04/27/docker/</loc>
+    
+    <lastmod>2020-04-28T03:25:59.656Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://relife957.github.io/2020/02/22/zhong-duan-dou-di-zhu-kan-kan-yuan-ma/</loc>
     
     <lastmod>2020-02-22T12:47:10.353Z</lastmod>
@@ -16,13 +23,6 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/tags/index.html</loc>
-    
-    <lastmod>2020-02-22T07:43:00.444Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://relife957.github.io/friends/index.html</loc>
     
     <lastmod>2020-02-22T07:43:00.444Z</lastmod>
@@ -30,9 +30,9 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/about/index.html</loc>
+    <loc>https://relife957.github.io/tags/index.html</loc>
     
-    <lastmod>2020-02-22T07:43:00.443Z</lastmod>
+    <lastmod>2020-02-22T07:43:00.444Z</lastmod>
     
   </url>
   
@@ -51,14 +51,21 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/04/huan-cun-he-db-yi-zhi-xing-wen-ti/</loc>
+    <loc>https://relife957.github.io/about/index.html</loc>
+    
+    <lastmod>2020-02-22T07:43:00.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://relife957.github.io/2019/08/28/shen-ru-tan-jiu-volatile/</loc>
     
     <lastmod>2020-02-22T07:43:00.440Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/08/28/shen-ru-tan-jiu-volatile/</loc>
+    <loc>https://relife957.github.io/2019/09/04/huan-cun-he-db-yi-zhi-xing-wen-ti/</loc>
     
     <lastmod>2020-02-22T07:43:00.440Z</lastmod>
     
@@ -72,14 +79,14 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/12/22/ji-yi-ci-gong-cheng/</loc>
+    <loc>https://relife957.github.io/2019/08/28/ji-yi-ci-leetcode-jie-ti-zui-chang-fei-bo-na-qi-shu-lie-de-chang-du-dp-jie-fa/</loc>
     
     <lastmod>2020-02-22T07:43:00.440Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/08/28/ji-yi-ci-leetcode-jie-ti-zui-chang-fei-bo-na-qi-shu-lie-de-chang-du-dp-jie-fa/</loc>
+    <loc>https://relife957.github.io/2019/12/22/ji-yi-ci-gong-cheng/</loc>
     
     <lastmod>2020-02-22T07:43:00.440Z</lastmod>
     
@@ -191,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/08/29/java-spi-jia-zai-mysql-qu-dong-yuan-ma-fen-xi/</loc>
+    <loc>https://relife957.github.io/2019/09/09/java-xian-cheng-chi-ru-he-ding-shi-hui-shou-kong-jian-xian-cheng-tan-jiu/</loc>
     
     <lastmod>2020-02-22T07:43:00.431Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/09/java-xian-cheng-chi-ru-he-ding-shi-hui-shou-kong-jian-xian-cheng-tan-jiu/</loc>
+    <loc>https://relife957.github.io/2019/08/29/java-spi-jia-zai-mysql-qu-dong-yuan-ma-fen-xi/</loc>
     
     <lastmod>2020-02-22T07:43:00.431Z</lastmod>
     
@@ -219,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/05/java-oom-hong-fa-tiao-jian-xiao-ji/</loc>
+    <loc>https://relife957.github.io/2019/09/12/juc-xia-de-tong-bu-gong-ju/</loc>
     
     <lastmod>2020-02-22T07:43:00.426Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/12/juc-xia-de-tong-bu-gong-ju/</loc>
+    <loc>https://relife957.github.io/2019/09/05/java-oom-hong-fa-tiao-jian-xiao-ji/</loc>
     
     <lastmod>2020-02-22T07:43:00.426Z</lastmod>
     
@@ -247,13 +254,6 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/12/27/go-go-go-san/</loc>
-    
-    <lastmod>2020-02-22T07:43:00.424Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://relife957.github.io/2019/12/26/go-go-go-er/</loc>
     
     <lastmod>2020-02-22T07:43:00.424Z</lastmod>
@@ -261,14 +261,21 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/16/concurrenthashmap-yuan-ma-fen-xi/</loc>
+    <loc>https://relife957.github.io/2019/12/27/go-go-go-san/</loc>
+    
+    <lastmod>2020-02-22T07:43:00.424Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://relife957.github.io/2019/12/26/go-go-go-yi/</loc>
     
     <lastmod>2020-02-22T07:43:00.423Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/12/26/go-go-go-yi/</loc>
+    <loc>https://relife957.github.io/2019/09/16/concurrenthashmap-yuan-ma-fen-xi/</loc>
     
     <lastmod>2020-02-22T07:43:00.423Z</lastmod>
     

@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Docker</title>
+      <link href="/2020/04/27/docker/"/>
+      <url>/2020/04/27/docker/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前"><a href="#前" class="headerlink" title="前"></a>前</h1><p>最近做毕业设计，部署前后端以及数据库服务时，用到了docker，现在做的差不多了，正好了记录一下</p><h1 id="正"><a href="#正" class="headerlink" title="正"></a>正</h1><h2 id="docker-镜像"><a href="#docker-镜像" class="headerlink" title="docker 镜像"></a>docker 镜像</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul><li>使用<code>docker images</code>可以查看本地的所有镜像，</li><li>使用<code>docker pull 镜像名：tag</code>可以从远程拉取指定版本的镜像</li><li>使用<code>docker search 镜像名</code> 可以搜索镜像</li><li>使用<code>docker rmi 镜像名</code> 可以删除镜像</li></ul><h3 id="创建镜像"><a href="#创建镜像" class="headerlink" title="创建镜像"></a>创建镜像</h3><ol><li>从已经创建的容器中更新镜像，并且提交这个镜像<br>首先根据一个已有的镜像创建一个容器，然后在这个容器内部进行一定的更改，例如在ubuntu中使用<code>apt-get update</code>,<br>然后使用<br><code>docker commit 容器id 要提交的镜像名</code><br>可以把更新后的容器作为一个镜像提交到本地，<code>docker commit</code>有几个参数：  <ul><li>-m：指定镜像的描述信息</li><li>-a：指定镜像作者</li></ul></li><li>构建镜像<br>这里是使用dockerfile来构建一个自定义的镜像<br>dockerfile的写法放在后面，写好好一个dockerfile以后，就可以使用<br><code>docker build -t 镜像名：tag dockerfile的路径</code><br>来构建一个镜像</li></ol><h3 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h3><p>首先使用<code>docker tag 原镜像名tag 现镜像名tag</code>例如<br><code>docker tag ubuntu:18.04 username/ubuntu:18.04</code><br>来更改镜像tag，然后使用<code>docker push username/镜像名</code>来推送自己的镜像到远程，记得要登陆</p><h2 id="docker-容器"><a href="#docker-容器" class="headerlink" title="docker 容器"></a>docker 容器</h2><h3 id="构建一个docker-容器"><a href="#构建一个docker-容器" class="headerlink" title="构建一个docker 容器"></a>构建一个docker 容器</h3><p>构建docker容器，需要有一个镜像，二者的关系就像是Java中的类和对象一样，一个镜像可以构建多个docker容器，这里使用的命令是：<br><code>docker run -it 镜像名 shell名</code><br>这里的<code>-it</code>是两个参数，<code>-i</code> 是指进入一个交互，<code>-t</code>是指终端进入交互，使用这个命令一个，就可以直接构建docker 容器成功并进入容器内部，通过一个交互式的终端，想要推出这个容器，使用<code>exit</code>.  </p><ul><li>如果想要容器一开始就后台执行，加上<code>-d</code>参数</li><li>使用 –name 来指定容器名</li></ul><p>如果有使用到端口：</p><ul><li>可以使用<code>-P</code>来将容器内部使用的网络端口随即映射到我们使用的主机上。</li><li>使用<code>-p 主机端口：容器内端口</code> 来映射端口<h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3></li><li><code>docker ps</code>可以查看所有正在运行的docker容器,加上<code>-a</code>参数可以查看所有容器</li><li><code>docker start 容器名</code> 可以启动一个已经存在的容器，不进入交互</li><li><code>docker stop 容器名</code> 可以关闭一个已经存在且正在运行的容器</li><li><code>docker restart 容器名</code>可以重启一个正在运行的容器</li><li><code>docker rm 容器名</code> 可以删除一个容器</li><li><code>docker logs 容器id或名</code> 可以查看容器内部的标准输出。</li><li><code>docker top 容器名</code> 可以查看容器内部的进程</li></ul><h3 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h3><ul><li><code>docker attach 容器id</code> 可以进入一个容器的交互，但是当使用exit退出的时候，容器会关闭  </li><li><code>docker exec -it 容器id</code> 交互shell 可以进入一个容器的交互，但是当退出的时候，不会关闭容器</li></ul><h3 id="导出容器和导入"><a href="#导出容器和导入" class="headerlink" title="导出容器和导入"></a>导出容器和导入</h3><ul><li>使用 <code>docker export 容器id &gt; 快照名.tar</code> 导出一个容器快照</li><li>使用 <code>cat 快照名 | docker import - 镜像名</code></li><li>使用 <code>docker import url</code> 可以远程导入一个镜像</li></ul><h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><ul><li>这里有一个使用过程中的知识点，我的项目需要使用到postgres和pgadmin，二者都是在docker中运行的，但是pgadmin需要连接到postgres，这个时候因为docker容器之间的网络关系，不能使用localhost进行连接，需要使用<br><code>docker inspect 容器名</code><br>查看docker容器 底层信息，看到这个容器运行时的ip，使用这个ip来连接即可。</li></ul><h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><p>上面说到了dockerfile是用来自定义构建镜像的，下面主要说一下怎么写这个dockerfile：</p><ul><li>From 指定镜像并拉取</li><li>Run 运行指令<br>这里一共有两种，一种是shell，另一种是可执行文件，格式如下：<ul><li>RUN &lt;命令行命令&gt;</li><li>RUN [“可执行文件”, “参数1”, “参数2”]<br>这里需要注意一点，每次使用指令，都会让docker 构建镜像的时候多构建一层，所以尽量使用<code>&amp;&amp;</code>来连接指令</li></ul></li><li>COPY<br>复制从主机目录中复制文件或者目录到容器里指定路径。<ul><li>COPY [–chown=<user>:<group>] &lt;源路径1&gt;…  &lt;目标路径&gt;</group></user></li><li>COPY [–chown=<user>:<group>] [“&lt;源路径1&gt;”,…  “&lt;目标路径&gt;”]  </group></user></li></ul></li></ul><p>更多指令请看<a href="https://www.runoob.com/docker/docker-dockerfile.html" target="_blank" rel="noopener">菜鸟教程</a></p><p>这里贴一个部署vue到nginx的dockerfile： </p><pre class="line-numbers language-dockerfile"><code class="language-dockerfile">FROM node:10COPY ./ /appWORKDIR /appRUN npm install && npm run buildFROM nginxRUN mkdir /appCOPY --from=0 /app/dist /appCOPY nginx.conf /etc/nginx/nginx.conf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h1 id="后"><a href="#后" class="headerlink" title="后"></a>后</h1><p>先说到这，下一次要说一下docker compose 和docker的网络和集群问题，深入一下。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 云计算 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 云计算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>终端斗地主--看看源码</title>
       <link href="/2020/02/22/zhong-duan-dou-di-zhu-kan-kan-yuan-ma/"/>
       <url>/2020/02/22/zhong-duan-dou-di-zhu-kan-kan-yuan-ma/</url>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://relife957.github.io/"/>
-  <updated>2020-02-22T12:47:10.353Z</updated>
+  <updated>2020-04-28T03:25:59.656Z</updated>
   <id>https://relife957.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker</title>
+    <link href="https://relife957.github.io/2020/04/27/docker/"/>
+    <id>https://relife957.github.io/2020/04/27/docker/</id>
+    <published>2020-04-27T14:51:30.000Z</published>
+    <updated>2020-04-28T03:25:59.656Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前&quot;&gt;&lt;a href=&quot;#前&quot; class=&quot;headerlink&quot; title=&quot;前&quot;&gt;&lt;/a&gt;前&lt;/h1&gt;&lt;p&gt;最近做毕业设计，部署前后端以及数据库服务时，用到了docker，现在做的差不多了，正好了记录一下&lt;/p&gt;
+&lt;h1 id=&quot;正&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="云计算" scheme="https://relife957.github.io/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="云计算" scheme="https://relife957.github.io/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
   
   <entry>
     <title>终端斗地主--看看源码</title>
@@ -562,32 +589,6 @@
       <category term="Java" scheme="https://relife957.github.io/tags/Java/"/>
     
       <category term="操作系统" scheme="https://relife957.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTPS 再看一次</title>
-    <link href="https://relife957.github.io/2019/09/06/https-zai-kan-yi-ci/"/>
-    <id>https://relife957.github.io/2019/09/06/https-zai-kan-yi-ci/</id>
-    <published>2019-09-06T02:38:12.000Z</published>
-    <updated>2020-02-22T07:43:00.425Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;Https&quot;&gt;&lt;a href=&quot;#Https&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="https://relife957.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络" scheme="https://relife957.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
