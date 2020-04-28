@@ -37,7 +37,7 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/archives/index.html</loc>
+    <loc>https://relife957.github.io/about/index.html</loc>
     
     <lastmod>2020-02-22T07:43:00.443Z</lastmod>
     
@@ -51,7 +51,7 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/about/index.html</loc>
+    <loc>https://relife957.github.io/archives/index.html</loc>
     
     <lastmod>2020-02-22T07:43:00.443Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/09/java-xian-cheng-chi-ru-he-ding-shi-hui-shou-kong-jian-xian-cheng-tan-jiu/</loc>
+    <loc>https://relife957.github.io/2019/08/29/java-spi-jia-zai-mysql-qu-dong-yuan-ma-fen-xi/</loc>
     
     <lastmod>2020-02-22T07:43:00.431Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/08/29/java-spi-jia-zai-mysql-qu-dong-yuan-ma-fen-xi/</loc>
+    <loc>https://relife957.github.io/2019/09/09/java-xian-cheng-chi-ru-he-ding-shi-hui-shou-kong-jian-xian-cheng-tan-jiu/</loc>
     
     <lastmod>2020-02-22T07:43:00.431Z</lastmod>
     
@@ -254,13 +254,6 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/12/26/go-go-go-er/</loc>
-    
-    <lastmod>2020-02-22T07:43:00.424Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://relife957.github.io/2019/12/27/go-go-go-san/</loc>
     
     <lastmod>2020-02-22T07:43:00.424Z</lastmod>
@@ -268,14 +261,21 @@
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/12/26/go-go-go-yi/</loc>
+    <loc>https://relife957.github.io/2019/12/26/go-go-go-er/</loc>
+    
+    <lastmod>2020-02-22T07:43:00.424Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://relife957.github.io/2019/09/16/concurrenthashmap-yuan-ma-fen-xi/</loc>
     
     <lastmod>2020-02-22T07:43:00.423Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://relife957.github.io/2019/09/16/concurrenthashmap-yuan-ma-fen-xi/</loc>
+    <loc>https://relife957.github.io/2019/12/26/go-go-go-yi/</loc>
     
     <lastmod>2020-02-22T07:43:00.423Z</lastmod>
     
