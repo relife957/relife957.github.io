@@ -1,0 +1,1318 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="JUC下的同步工具, Java ">
+    <meta name="description" content="重新看一下JUC下的各种同步工具">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>JUC下的同步工具 | 王一的博客</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-darcula.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">王一的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">王一的博客</div>
+        <div class="logo-desc">
+            
+            苏州大学 | 计算机科学与技术 |
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JUC下的同步工具</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/源码分析/">
+                                <span class="chip bg-color">源码分析</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                            <a href="/categories/Java/源码分析/" class="post-category">
+                                源码分析
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-09-12
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这些锁是并发包下的锁,实现原理全是基于AQS,还使用了CAS操作,先了解一下<a href="https://relife957.github.io/2019/09/11/shuo-shuo-bai-aqs/">AQS和CAS</a>,<br>然后看一下JUC包的结构<br><img src="1.png" alt="JUC"></p>
+<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><h4 id="介绍和使用"><a href="#介绍和使用" class="headerlink" title="介绍和使用"></a>介绍和使用</h4><p>可重入的独占锁,即同时只有一个线程可以获取锁,其他尝试获取锁的线程会被放在锁的AQS阻塞队列中,重入的意思是指同一个线程可以多次获取锁.<br>公平锁和非公平锁. ReentrantLock内部有两个内部类<code>NonfairSync</code>和<code>FairSync</code>分别是非公平锁和公平锁,公平和不公平的区别在于后尝试的线程是否会在先尝试获取锁的线程前获取这个锁.具体的实现,下面说.<br>AQS的博客中说到过,state这个变量在不同的锁实现中有不同的意义,在ReentrantLock中,state变量代表一个线程获取锁的可重入次数,默认情况下为0,代表没有被线程持有,当第一个线程尝试使用CAS设置state为1,如果CAS成功,就记录锁的持有者为该线程,这个记录的操作是通过AQS中的<code>setExclusiveOwnerThread(Thread)</code>设置.在该线程没有释放锁的情况下第二次获取锁后,状态值被设置为2,即可重入次数.在该线程释放锁时,尝试CAS操作使state减一,如果减一后为0,当前线程释放锁.</p>
+<ul>
+<li>lock,tryLock,lockInterruptibly<ul>
+<li>这个是面试中的问题,三种获取锁的方式有什么不同</li>
+<li>lock是获取锁,如果锁已经被其他线程持有,就将该线程封装置于AQS队列中阻塞挂起.该方法的公平和非公平策略有所不同<ul>
+<li>非公平策略:先来的线程没有获取到锁被置于队列中挂起,后来的线程如果刚好碰到当前持有的锁的线程释放锁,就会直接获取锁,不会查看队列中是否有比自己先来的线程.</li>
+<li>公平策略就容易理解了,在能拿到锁的时候查看队列中是否有比自己先来的锁,如果有,会让出.</li>
+</ul>
+</li>
+<li>lockInterruptibly();与lock()类似,不过对中断响应,即如果使用该方法尝试获取时,如果其他线程调用了interrupt()方法中断该线程,该方法会抛出<code>InterruptionException</code></li>
+<li>tryLock();尝试获取锁,如果锁被持有,就直接返回false,不添加到队列,不挂起阻塞,否则获取锁,返回true;</li>
+</ul>
+</li>
+</ul>
+<h4 id="底层一点"><a href="#底层一点" class="headerlink" title="底层一点"></a>底层一点</h4><p>在AQS的时候,我说过,AQS其实是使用了模板模式,继承AQS后需要实现<code>tryAcquire()</code>等方法,所以我们就来看看这个方法   </p>
+<pre class="line-numbers language-Java"><code class="language-Java">final boolean nonfairTryAcquire(int acquires) {
+    //当前线程
+    final Thread current = Thread.currentThread();
+    //获取同步状态
+    int c = getState();
+    //state == 0,表示没有该锁处于空闲状态
+    if (c == 0) {
+        //获取锁成功，设置为当前线程所有
+        if (compareAndSetState(0, acquires)) {
+            setExclusiveOwnerThread(current);
+            return true;
+        }
+    }
+    //线程重入
+    //判断锁持有的线程是否为当前线程
+    else if (current == getExclusiveOwnerThread()) {
+        int nextc = c + acquires;
+        if (nextc < 0) // overflow
+            throw new Error("Maximum lock count exceeded");
+        setState(nextc);
+        return true;
+    }
+    return false;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看代码中的注释就可以知道一个大致的流程,同时我们可以看到<code>ReentrantLock</code>的可重入性以及如何实现.<br>至于其他的方法我们就很容易理解了,都是围绕<code>state</code>的一个操作,至于其他的AQS已经有提供了.  </p>
+<h2 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h2><h4 id="介绍和使用-1"><a href="#介绍和使用-1" class="headerlink" title="介绍和使用"></a>介绍和使用</h4><ul>
+<li><p>可重入的读写锁,在某些方面和上一个锁还是有些类似的,读写锁内部维护了一个ReadLock和一个WriteLock,底层还是AQS,但是AQS只有一个state状态量,如何同时控制读和写呢,这里使用了state(int)的高16位表示读状态,低16为表示写,高16位的值代表获取读锁的线程数,低16位代表写锁的可重入数.</p>
+</li>
+<li><p>读写锁维持了很多和读锁有关的变量:</p>
+<ul>
+<li>Thread firstReader:第一个获取读锁的线程</li>
+<li>int firstReaderHoldCount:记录第一个获取读锁的线程的可重入次数.</li>
+<li>int cachedHoldCounter:最后一个获取读锁的线程的可重入次数</li>
+<li>ThreadLocal readHolds:除了第一个获取读锁的线程以外的线程的可重入次数</li>
+</ul>
+</li>
+<li><p>读写锁也有公平和非公平策略,与ReentrantLock大同小异,不详细介绍了</p>
+</li>
+<li><p>写锁的获取与释放</p>
+<ul>
+<li>void lock(); 写锁是一个独占锁,和ReentrantLock类似,如果有其他线程已经获得写锁,就进入队列挂起等待,否则获取锁或者使状态值加一.</li>
+<li>还有tryLock()和lockInterruptibly()以及一些带等待时限的方法,不介绍了,大同小异</li>
+<li>void unlock();释放锁,状态值减一,为0后释放锁,如果没有持有锁而调用了释放锁,抛出<code>IllegalMonitorStateException</code>异常.</li>
+</ul>
+</li>
+<li><p>读锁的获取和释放</p>
+<ul>
+<li>void lock();如果当前没有其他线程持有写锁,可以获得读锁,高16为加一,方法返回,否则进入队列阻塞等待.<ul>
+<li>需要注意的是,如果当前要获取读锁的线程已经持有了写锁,则也可以获取读锁,但要注意的是,先获取了写锁,然后获取读锁处理事情完毕后,读写锁都释放,不能只释放其一.</li>
+</ul>
+</li>
+<li>获取读锁的实现不复杂,但是很麻烦,因为读写锁内部维持了很多读锁的变量,需要在获取读锁成功后修改.</li>
+</ul>
+</li>
+</ul>
+<h4 id="底层一点-1"><a href="#底层一点-1" class="headerlink" title="底层一点"></a>底层一点</h4><p>主要看这一段代码:<br>首先是读锁的lock()函数,底层调用的是tryAcquireShared(),是一个共享的获取锁的过程:  </p>
+<pre class="line-numbers language-Java"><code class="language-Java">protected final int tryAcquireShared(int unused) {
+            /*
+             * Walkthrough:
+             * 1. 如果写锁被其他线程持有, fail.
+             */
+             //当前线程
+            Thread current = Thread.currentThread();
+            //状态state
+            int c = getState();
+            // 如果写锁不为0且当前线程不是持有写锁的线程,退出
+            if (exclusiveCount(c) != 0 &&
+                getExclusiveOwnerThread() != current)
+                return -1;
+            // 读变量
+            int r = sharedCount(c);
+            // 读不阻塞且读锁的获取者小于最大值,cas设置
+            if (!readerShouldBlock() &&
+                r < MAX_COUNT &&
+                compareAndSetState(c, c + SHARED_UNIT)) {
+                //如果读锁为0,设置第一个获得读锁的线程为当前
+                if (r == 0) {
+                    firstReader = current;
+                    firstReaderHoldCount = 1;
+                //如果当前线程就是第一个获得读锁的线程,计数++
+                } else if (firstReader == current) {
+                    firstReaderHoldCount++;
+                } else {
+                    HoldCounter rh = cachedHoldCounter;
+                    if (rh == null || rh.tid != getThreadId(current))
+                        cachedHoldCounter = rh = readHolds.get();
+                    else if (rh.count == 0)
+                        readHolds.set(rh);
+                    rh.count++;
+                }
+                // 获得读锁成功,返回1
+                return 1;
+            }
+            return fullTryAcquireShared(current);
+        }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后是写锁的lock方法,调用的是tryAcquire(),是一个排他锁:</p>
+<pre class="line-numbers language-Java"><code class="language-Java">    protected final boolean tryAcquire(int acquires) {
+            /*
+             * Walkthrough:
+                1. 如果读计数非零且写计数也非零,但当前线程不是持有锁的线程,报错
+                2. 如果计数饱和,报错
+                3. 如果这个线程是可重入获取或队列策略允许，那么它就有资格获得锁。如果是，则更新状态并设置所有者。 
+             */
+             //当前线程
+            Thread current = Thread.currentThread();
+            // 状态值
+            int c = getState();
+            // 读锁值
+            int w = exclusiveCount(c);
+            //状态不为0
+            if (c != 0) {
+                // (Note: if c != 0 and w == 0 then shared count != 0)
+                // 没有拿到读锁的线程,当时有写锁,且当前线程不是持有读锁的线程,返回false
+                if (w == 0 || current != getExclusiveOwnerThread())
+                    return false;
+                // 拿到读锁后是否大于最大限制,如果大于,抛出错误
+                if (w + exclusiveCount(acquires) > MAX_COUNT)
+                    throw new Error("Maximum lock count exceeded");
+                // Reentrant acquire
+                // set状态值
+                setState(c + acquires);
+                return true;
+            }
+            // state = 0
+            // 如果写阻塞且cas获取失败,返回false
+            if (writerShouldBlock() ||
+                !compareAndSetState(c, c + acquires))
+                return false;
+            // cas成功,设置当前线程为拿到读锁的线程,返回true
+            setExclusiveOwnerThread(current);
+            return true;
+    }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><h4 id="故事"><a href="#故事" class="headerlink" title="故事"></a>故事</h4><p>这个工具类其实我是用过的,之前做过一个后端的项目,用到了SpringBoot中结合线程池,但是有一个问题,SpringBoot并不会主动关闭线程池,而我的项目不是一个web,需要一直运行,是一个每天定时运行的项目,所以我需要手动关闭线程池,但又不能直接在main线程中关闭,所以用到了CountDownLatch.  </p>
+<h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>CountDownlatch,字面意思是减少计数的门闩,就是不断减少计数,直到为0后门打开,然后执行门后的内容.</p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><p>构造方法<code>CountDownlatch(int count)</code>count表示需要减少的计数.<br><code>await()</code>一般是主线程调用,意味着该线程阻塞在这里,直到计数为0,然后执行后面的内容<br><code>countDown()</code>一般是工作线程调用,完成任务后调用,意味着减少一个计数<br>用法很简单,没什么难度</p>
+<h4 id="底层一点-2"><a href="#底层一点-2" class="headerlink" title="底层一点"></a>底层一点</h4><p>其实这个源码没什么意思,就是简单用了AQS.<br>首先我们可以确定的就是,使用的是AQS的共享锁.<br>然后是<code>await()</code>方法,就是去判断当前值是否为0,不为0就会调用一个自旋方法去一直获得同步状态.<br>接着是<code>countDown()</code>,首先获取到锁的状态,如果当前状态为0,直接返回减少失败,否则使用CAS更改状态使c–;<br>就这样,没有什么别的,源码很少很简单,可以自己打开看一下.</p>
+<h2 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h2><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>CyclicBarrier,字面意思是可循环使用的屏障,它要做的事情就是,让一组线程到达一个屏障时被阻塞,知道最后一个线程到达屏障时,会执行指定方法.  </p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>构造方法 : <code>CyclicBarrier(int parties)</code>,参数表示构造屏障拦截的数目.<br>          <code>CyclicBarrier(int parties, Runnable barrierAction)</code> barrierAction可以缺省,表示当所有线程到达后执行的内容.<br><code>await()</code>,每个工作线程调用的,意味着我已经到了,就等你们了,等所有(parties)线程都使用await()等待后,门打开,执行后续.</p>
+<h4 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h4><p>一般会把<code>CountDownlatch</code>和<code>CyclicBarrier</code>比较,其实我觉得差不多,就是后者可以复用,然后底层后者使用<code>ReentrantLock</code>和<code>Condition</code>,而前者是基于<code>AQS</code>．　　</p>
+<h4 id="底层一点-3"><a href="#底层一点-3" class="headerlink" title="底层一点"></a>底层一点</h4><p>比较重要的就是一个<code>dowait()</code>方法和分代的一个思想,代码我贴一下:  </p>
+<pre class="line-numbers language-Java"><code class="language-Java">private int dowait(boolean timed, long nanos)
+        throws InterruptedException, BrokenBarrierException,
+        TimeoutException {
+    //获取锁
+    final ReentrantLock lock = this.lock;
+    lock.lock();
+    try {
+        //分代
+        final Generation g = generation;
+
+        //当前generation“已损坏”，抛出BrokenBarrierException异常
+        //抛出该异常一般都是某个线程在等待某个处于“断开”状态的CyclicBarrie
+        if (g.broken)
+            //当某个线程试图等待处于断开状态的 barrier 时，或者 barrier 进入断开状态而线程处于等待状态时，抛出该异常
+            throw new BrokenBarrierException();
+
+        //如果线程中断，终止CyclicBarrier
+        if (Thread.interrupted()) {
+            breakBarrier();
+            throw new InterruptedException();
+        }
+
+        //进来一个线程 count - 1
+        int index = --count;
+        //count == 0 表示所有线程均已到位，触发Runnable任务
+        if (index == 0) {  // tripped
+            boolean ranAction = false;
+            try {
+                final Runnable command = barrierCommand;
+                //触发任务
+                if (command != null)
+                    command.run();
+                ranAction = true;
+                //唤醒所有等待线程，并更新generation
+                nextGeneration();
+                return 0;
+            } finally {
+                if (!ranAction) // 未执行，说明 barrierCommand 执行报错，或者线程打断等等情况。
+                    breakBarrier();
+            }
+        }
+
+        for (;;) {
+            try {
+                //如果不是超时等待，则调用Condition.await()方法等待
+                if (!timed)
+                    trip.await();
+                else if (nanos > 0L)
+                    //超时等待，调用Condition.awaitNanos()方法等待
+                    nanos = trip.awaitNanos(nanos);
+            } catch (InterruptedException ie) {
+                if (g == generation && ! g.broken) {
+                    breakBarrier();
+                    throw ie;
+                } else {
+                    // We're about to finish waiting even if we had not
+                    // been interrupted, so this interrupt is deemed to
+                    // "belong" to subsequent execution.
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+            if (g.broken)
+                throw new BrokenBarrierException();
+
+            //generation已经更新，返回index
+            if (g != generation)
+                return index;
+
+            //“超时等待”，并且时间已到,终止CyclicBarrier，并抛出异常
+            if (timed && nanos <= 0L) {
+                breakBarrier();
+                throw new TimeoutException();
+            }
+        }
+    } finally {
+        //释放锁
+        lock.unlock();
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具体的内容看注释,我总的说一下:<br>首先是拿到锁,这个锁是全局的排它锁,意味着同时只有一个线程可以在一个时刻进入,然后是一些中断和异常的判断,到index处,将当前计数–,然后判断是否这是最后一个到达的线程,如果不是,就使用<code>Condition</code>的<code>await()</code>阻塞当前线程到条件变量的阻塞队列,如果是最后一个线程,就执行我们创建<code>CycliBarrier</code>时的传入的runnable,当然,前提是我们传入了.然后唤醒所有等待在条件变量等待队列中的线程,更新换代.  </p>
+<p>然后我们说一下换代的问题.<code>Generation</code>是一个内部类,也就是<code>parties</code>个线程到达前,他们属于同一代,因为<code>CyclicBarrier</code>是复用的,所以还有下一代,其实很简单,就是唤醒所有线程,重置count,重置Generation.</p>
+<h2 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h2><p>原子操作的问题还是要回到<code>i++</code>上来,我们知道<code>i++</code>并不是一个原子操作,当一个线程读取值,然后使i+1,然后再写回缓存或者内存,这是三步操作,中间可能有其他线程的参与,就会导致线程安全问题,为了解决在这个问题,方法很多,可以加锁(synchronized和lock),还有就是下面说的原子类.<br>JUC下提供了一系列的原子类,就是<code>atomic</code>包下面的类,这是一种乐观锁的实现,主要就是通过<code>volatile</code>关键字和<code>CAS</code>操作来实现,这两个具体我就不说了,我以前的博客也有相关内容.这里主要说一下原子类.主要有一下几种:  </p>
+<ul>
+<li>原子类: <code>AtomicBoolean</code>,<code>AtomicInteger</code>,<code>AtomicLong</code>,<code>AtomicReference</code></li>
+<li>院子数组 : <code>AtomicIntegerArray</code>,<code>AtomicLongArray</code>,<code>AtomicReferenceArray</code>,</li>
+<li>原子属性更新: <code>AtomicLongFieldUpdater</code>,<code>AtomicIntegerFieldUpdater</code>,<code>AtomicReferenceFieldUpdater</code></li>
+</ul>
+<h2 id="非阻塞队列"><a href="#非阻塞队列" class="headerlink" title="非阻塞队列"></a>非阻塞队列</h2><p>非阻塞队列即不使用锁的队列,主要使用<a href="https://blog.csdn.net/qq_36865108/article/details/86679822" target="_blank" rel="noopener">CAS</a>操作保证原子性</p>
+<h4 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h4><p>ConcurrentLinkedQueue是无界非阻塞队列.底层数据结构是单向链表,通过volatile分别修饰两个节点,这两个节点分别存放链表的头结点和尾节点来实现可见性,通过CAS操作保证节点入队出队时操作链表的原子性.</p>
+<ul>
+<li><p>offer():在队列尾部添加一个元素</p>
+<ul>
+<li>多线程情况下,如何实现多线程同时插入元素.前面说了,通过CAS实现入队时操作的原子性,看一下源码这一行<code>if (p.casNext(null, newNode))</code>,如果多线程同时执行到这一步,因为CAS操作<code>casNext</code>本身是原子的,如果有一个线程完成了操作,那么其他竞争的线程会重新进入这一行代码的上层循环尝试进行CAS操作,只有成功才会返回.</li>
+<li>这个过程是无锁的,因为没有线程因为没有完成操作而被挂起阻塞,而是在无限循环中不断尝试,就是利用CPU资源换取阻塞引起的开销.孰是孰非,要具体分析.</li>
+</ul>
+</li>
+<li><p>poll() : 从队头移除一个元素</p>
+<ul>
+<li>还是一行代码:<code>if (item != null &amp;&amp; p.casItem(item, null))</code>,可以看到,所谓的删除操作就是将当前节点的值设为null,然后重新指定头结点,被移除的节点没了引用,会在gc时被回收,因为整个队列维持了头结点和尾节点两个volatile变量,所以poll和offer并不冲突.</li>
+<li>有一点需要注意,如果没有执行过offer操作就直接poll,会返回null.</li>
+</ul>
+</li>
+<li><p>peek():获取头结点元素,不移除</p>
+<ul>
+<li>这个操作其实和poll类似,不过没有cas操作</li>
+</ul>
+</li>
+<li><p>size() ; 获取队列长度</p>
+<ul>
+<li>这个方法有个问题,因为没有加锁,所以如果在调用size()的过程中可能发生增删的操作,造成统计不准确.</li>
+</ul>
+</li>
+</ul>
+<h2 id="阻塞队列"><a href="#阻塞队列" class="headerlink" title="阻塞队列"></a>阻塞队列</h2><h4 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h4><p>使用<a href="https://blog.csdn.net/qq_36865108/article/details/86692639" target="_blank" rel="noopener">ReentrantLock</a>实现锁机制,底层也是单向列表,也有两个节点存放头节点和尾节点,还有一个count代表元素个数.</p>
+<ul>
+<li><p>类中有两个ReentrantLock,分别用于添加和删除操作时的锁控制.LinkedBlockingQueue是一个有界的阻塞队列,可以初始指定容量,默认是0x7fffffff;</p>
+</li>
+<li><p>offer:队列尾部添加一个元素,队列已满返回false,方法不阻塞.</p>
+<ul>
+<li>offer操作的过程是这样的:先判断元素是否为空,为空抛出空指针异常;然后判断队列是否已满,如果已满返回false;构造新节点,获取putLock独占锁,<strong>再一次判断队列是否满</strong>,不满则入队列,计数+1,最后释放锁.了解了独占锁,这些其实很简单也很正常,解释一下加粗的内容,为什么要重新判断队列是否满.第一次判断队列是否满时还没有拿到独占锁,如果没有拿到独占锁而被挂起,后来再拿到锁时,可能已经有其他线程进入添加了元素,所以要重新判断.</li>
+</ul>
+</li>
+<li><p>put() ; 类似offer,不过如果队列已满不会返回false,而是阻塞线程,直到队列空闲再插入</p>
+<ul>
+<li>具体实现还有一点需要注意,就是队列已满的等待和没有获取到锁的等待是不同的,前者,会将阻塞线程放到条件变量的条件队列中,后者则是放在AQS的阻塞队列中.具体看ReentrantLock源码那篇</li>
+</ul>
+</li>
+<li><p>poll:从头部移除一个元素,如果队列为空返回null,该方法不阻塞</p>
+<ul>
+<li>其实实现和offer差不多,不过对应逻辑变一变.注意的是也要判断两次队列是否为空,道理一样.</li>
+</ul>
+</li>
+<li><p>peek():获取头部元素但不删除,队列为空返回null.</p>
+</li>
+<li><p>take():类似poll,不过队列为空阻塞线程直到队列不为空.</p>
+</li>
+<li><p>方法是不是阻塞的,就是当队列满或空时是否阻塞线程.如果被阻塞的线程被其他线程调用了中断方法,会抛出<code>InterruptedException</code>异常而返回.</p>
+</li>
+<li><p>offer和put操作成功后,会通知被take操作阻塞的线程,类似的,take和poll操作成功后也会通知被put操作阻塞的线程.</p>
+</li>
+</ul>
+<h4 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h4><p>底层通过数组实现的有界队列.维持两个下标,一个入队下标,一个出队下标.因为是数组,所以只使用一个独占锁,也就意味着同时只有一个线程进行入队和出队操作.</p>
+<ul>
+<li>offer() ; 向队尾插入一个元素,如果队列有空闲则插入成功并返回true ; 如果队列已满则丢弃当前元素放回false,如果插入元素为null返回空指针异常.<ul>
+<li>如果添加成功,会通知一个被take操作阻塞的线程.put同</li>
+</ul>
+</li>
+<li>put(); 操作,向队尾插入一个元素,如果队列有空闲则插入成功后直接返回true,如果队列已满则阻塞线程知道队列有空闲并插入成功并返回true;</li>
+<li>poll():从头部移除一个元素,如果队列为空返回null;<ul>
+<li>所谓移除,就是重置对头元素,重设对头下标</li>
+<li>移除后会激活条件变量通知条件队列中因为队列满而被阻塞的线程.take同</li>
+</ul>
+</li>
+<li>take();从头部移除一个元素,如果队列空,则阻塞线程.</li>
+</ul>
+<h4 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h4><p><code>PriorityBlockingQueue</code>是一个带优先级的无界阻塞队列,每次出兑都返回优先级最高或者最低的元素,内部采用平衡二叉树堆实现,所以直接遍历队列元素不保证有序,因为是带优先级的,所以队列元素必须实现<code>Comparable</code>接口,然后设置对象的<code>compareTo</code>方法,值得一提的是,最大堆还是最小堆是由这个方法决定的;底层采用数组存放元素,</p>
+<ul>
+<li><p>设置一个notEmpty条件变量控制删除时的数组为空的情况,维持一个条件队列,当队列中没有元素时,删除操作的线程会被放入这个队列</p>
+</li>
+<li><p>一个很重要的标志<code>allocationSpinLock</code>,只有两个状态0-1,0代表数组没有进行扩容,1代表数组正在进行扩容;</p>
+</li>
+<li><p>offer(E e) : 在队列中添加一个元素,由于是无界队列,所以只会返回true;方法内部,使用ReetrantLock加锁,当成功加入一个元素后,唤醒notEmpty条件队列中的一个阻塞线程,</p>
+<ul>
+<li>扩容问题 <code>tryGrow</code>:  <code>PriorityBlockingQueue</code>为了提高并发性能,使用CAS控制并发操作,而且在执行扩容操作前就释放了offer中添加的独占锁,使得其他线程可以进入,当其他线程拿到锁,进入了offer方法,但是扩容线程还没有完成扩容,就又进入了tryGrow方法,又释放了锁,但是进行CAS失败,不会影响到扩容线程;</li>
+<li>建堆 : 在类中被没有真正的树形的堆,这个最大/最小堆是根据数组存在的,也就是从0-size-1遍历时,对应下标的值就是树形中的层次遍历的顺序,</li>
+</ul>
+</li>
+<li><p>poll() : 获取队列内部堆树的根节点元素,如果队列温控,返回null,这个方法不是阻塞的,但是当一处根节点元素后,整个数组需要调整,建立新的堆;</p>
+</li>
+<li><p>put(E e) : 因为是无界的, 所以就是offer</p>
+</li>
+<li><p>take() : 获取队列中根节点的元素,如果队列为空,阻塞线程</p>
+</li>
+<li><p>size( ) : 安全的,内部加锁;</p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/源码分析/">
+                                    <span class="chip bg-color">源码分析</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/09/13/http-de-get-post/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Http的Get Post">
+                        
+                        <span class="card-title">Http的Get Post</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            说一下Get和Post
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-09-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/计算机网络/" class="post-category">
+                                    计算机网络
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/计算机网络/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/09/11/shuo-shuo-bai-aqs/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="说说呗,AQS">
+                        
+                        <span class="card-title">说说呗,AQS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            重新再看一次AQS
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            <a href="/categories/Java/源码分析/" class="post-category">
+                                    源码分析
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/源码分析/">
+                        <span class="chip bg-color">源码分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <a href="/about" target="_blank">王一</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/relife957" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wangyi3435@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1401605581" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1401605581" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+
+</html>

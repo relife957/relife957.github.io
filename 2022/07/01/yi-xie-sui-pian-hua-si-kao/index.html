@@ -1,0 +1,1013 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="一些碎片化思考, Java ">
+    <meta name="description" content="一些碎片化思考">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>一些碎片化思考 | 王一的博客</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-darcula.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">王一的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">王一的博客</div>
+        <div class="logo-desc">
+            
+            苏州大学 | 计算机科学与技术 |
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">一些碎片化思考</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/碎片化思考/">
+                                <span class="chip bg-color">碎片化思考</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/碎片化思考/" class="post-category">
+                                碎片化思考
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-01
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="正"><a href="#正" class="headerlink" title="正"></a>正</h2><ul>
+<li><p>建议<br>我认为提建议的最好的方法就是，告诉对方一些自己过去的经验，如果没有相关的经验，就简单说一下自己对这方面的理解，同时强调这是自己的理解，自己没有经历过。<br>为什么要这样，很多人，尤其是长辈，习惯为年轻人做决定，理由自然是诸如，“我吃的盐比你吃的饭还多”，“我这是为你好”之类的，长辈们总是很自信，这是人性的弱点，我认为这也属于好为人师的一种，他们自认已经走过了大半辈子，经历过人生大部分的事情。当然这也是事实，但是时代在变，每个人的性格，能力也不同，任何事都没有通解，需要结合自己的情况和自己对这件事的理解而做决定，这个时候确实需要长辈的经验，从他们的经历经验中总结出一些客观事实，不受自身和时代背景影响的东西，这些会对你做决定有所帮助。</p>
+</li>
+<li><p>朋友<br>人是需要朋友的。<br>年轻的时候，我认为人是不需要那么多朋友的，有一个两个真心的朋友就好了。<br>到最近，我的想法发生了变化，我有女朋友一起住，也有家人的关心，有稳定高薪的工作，友善的同事，但是我还是感到孤独，我想我是需要朋友了。<br>我可能需要朋友们一起吃吃饭，聊聊天，一起打打游戏。<br>我想了想这是一种什么情感，我想不太明白，就是感觉我需要。<br>我最近状态很差，陷入到了整体比较悲观的状态，这并不是单纯的缺少朋友导致的，但是我想有朋友在我会好一点。<br>人是需要朋友的。</p>
+</li>
+<li><p>说服<br>说服大众不需要深究一个道理，区辩证这个道理的对错，只需要证明这个道理和地位低的有关，那大众就会认为他是假的，反之亦然，如果想辩证一个道理是真的，只需要证明它和地位高的人相关即可。</p>
+</li>
+<li><p>情感怯懦<br>上面说到，我想要朋友，我很想和我的朋友们联系，但是我又不敢，我甚至不明确我不敢的原因，直观的感受是，我不知道打完招呼后说些什么，也不知道我眼中的好朋友是不是同样认为我是他们的好朋友，好到可以抽一些可怜的休息时间和他聊天。</p>
+</li>
+<li><p>基础设施开发<br>互联网公司做基础设施的开发人员，很多人拥有傲慢和自大，傲慢体现在对其他人方案的随意质疑，很多人甚至不愿意自己去看，去理解这样设计的原因，只要和自己的想法不同，就提出意见，并且固执己见，不愿意听取别人的解释，最后落下一句，随你吧。自大体现在，对于用户体验的自以为是，口口声声这样是为了用户体验，但是自己脱离业务多年，或者根本没有做过业务，认为自己的设计完美无缺，不愿意听取用户的声音，所谓脱离群众。</p>
+</li>
+<li><p>感情羁绊/成本<br>一对情侣在一起多年，两个人之前会存在一些帮助两个人在一起的东西，这些东西往浪漫了说，叫做感情羁绊，往现实了说，叫做感情成本。<br>不仅仅是说法的不同，也在于不同人的不同看法。例如羁绊是性格乐观一些且感性的人的看法，他认为这些东西联系了我们彼此，我们熟知对方的性格和习惯，我们同时也愿意去包容对方的缺点和不不好的习惯。而成本是就是性格悲观一些且理性的人的看法，他或许会认为这些东西是我们对彼此的妥协，他并没有真正的，打心底觉得对方的不好已经没什么了，而是压抑自己的不满，然后逐渐形成习惯，最后可能会改变自己的想法，之所以称之为感情成本，也是因为这是针对你当前另一半的，换另一个人就又要重新开始，而这个过程是痛苦且漫长的。</p>
+</li>
+<li><p>书籍和人生观<br>当我写完上面一段话的时候，我重新阅读了几遍，做了一些文字的修改，并且产生了一些其他的想法。<br>我的思考是源于我的生活，并且收到我性格和经历的影响。我上面写下的思考，如果有人看到的话，可能会嗤之以鼻，也可能有人会深以为然，这也取决于看的人的性格和经历。<br>接着我想到，如果这段话是我在书上看到的，会不会对我的人生观有一些影响，我的性格是悲观的，所以我会觉得后者是对的。<br>再想到我之前看过的书，其中不乏很多类似的语句，对我产生了什么影响吗，我有没有把一句话当作我的人生信条呢，我仔细回忆了下，没有印象深刻的。<br>联想到其他人，总会听到很多人说自己的人生信条是什么什么，用别人的一句话，当作自己的人生信条是好的吗，这是个值得思考和讨论的事情，我总是认为，这世上没有适用于所有人的道理，甚至没有完全适用于一个人一生的道理，任何道理应该是对一个人的人生的一段时间适用。<br>我大抵上是不会用别的的一句话当作自己的人生信条，最多结合这句话和自己的经历经验做一些”本土化“，这或许也是一个好一些，对自己更负责的事情吧。</p>
+</li>
+<li><p>虚荣<br>今天突然意识到，我自己有点可悲，我很少有真正喜欢的事情，从小到大，做的很多事情都是为了虚荣，可以脱颖而出，与众不同。<br>小时候，总是喜欢报各种竞赛，结果最后一个奖都没拿到，因为我没有认真的去学过，报名竞赛一般会有专门的培训，有些时候是在假期，有些时候是在自习课的时候，这个时候大家都在玩或者上自习，你拿着书，在众目睽睽之下走了出去，我似乎一直很享受这种感觉。<br>长大一点，一会儿去做这个，一会儿去弄那个，好像都是因为可以让别人知道的时候，感叹一句，原来你会这个呀，日语是，围棋是，很多都是。<br>在我心中，这样是可悲的，也不应该活成这个样子。爱慕虚荣的原因还是自卑，不重视自身的价值，而只关注别人的目光和评价。<br>我应该做出一些改变了。</p>
+</li>
+<li><p>天赋<br>刚才看到一句话，能够不纠结为什么去做一件事的能力，就是你的天赋。<br>不能说这句话就是天赋这个词的定义，我觉得是对这个天赋这个词的一个方面的解读。或者说是对将这样一种能力归于个人的天赋。<br>在上学的时候，学习的好坏很大程度上取决于你对学习是否热爱，其中很多学习不好的同学有一个共同的特性，就是看不进去书，这一类人也总是自说或者被说成不是学习的料，因为他们确实是完全不热爱，甚至都不会去纠结一下为什么要去学习，就像他不会去纠结为什么要去玩一样。也有相反的人，他们就是喜欢看书学习，不需要理由，这样的人也许就是那些所谓的天才。当然还有绝大多数人，就是普通人，没有这种天赋，或是为了父母的期盼，或是为了改变命运等等。<br>这样的能力也可以映射为你在某一方面的天赋，学习只是其中一方面。  </p>
+</li>
+<li><p>电锯人<br>最近看完了电锯人，本来以为是一部经典的jump热血漫，看下来却是令我蛮惊喜的。<br>其中比较新奇的设定是所谓的恶魔，就是人们心中对某一个事物的恐惧所化成的，所以前期一直宣扬的最强，最可怕的恶魔就是枪之恶魔，我认为作者是想表达世界上的部分国家的枪支管理以及枪支犯罪事件带给世界的恐惧以及对人们的伤害。<br>后期比较强的是支配恶魔，其中支配恶魔本身想让电锯人杀掉他，这样世界就会失去支配，但是各国政府不同意，对于政府来说，他们最不能失去的不是枪支，二是对人们的支配。<br>整体的立意是蛮新的，作者是个蛮有想法的人，感觉也是一个热爱和平正义的人。、</p>
+</li>
+<li><p>三体<br>最近三体电视剧播出了，重新看了一些三体的相关讨论，对一些讨论的看法记录一下</p>
+<ul>
+<li>人类不感谢罗辑<br>这个点我之前没有多想，最近看到了，也有了一些看法。小说中，罗辑将执剑人的权柄交给程心之后，被带走了，罪名是涉嫌毁灭人类之类的，为什么人类会对一个救世主般的人这样呢，网上关于这部分的讨论很多，结论都是指向罗辑将自己、三体世界以及人类三者绑到了一起，虽然威胁了三体，但是人类也受到了威胁，是死的威胁。<br>我对这块暂时也没有新的想法，只是觉得大刘的细节很多，真的没有放弃任何一个可以输出观点的地方，按照一般的剧情，罗辑会被当成救世主一样供奉起来，这个剧情放在小说里很正常，但是在现实就很不正常了。科幻小说却不乏现实主义。</li>
+</ul>
+</li>
+<li><p>壳子<br>我想说的是每个人身上的壳子，或者说是人设，几乎所有人都会在真实的自己外套上很多层壳子。<br>真实的自己并不美好，我觉得应该没有多少人的真实体会让人喜欢，例如情侣夫妻生活久了，逐渐褪去壳子，用真实的自己在家里生活，你觉得女朋友会喜欢懒惰的你，不爱说情话的你，不爱准备浪漫的你吗。<br>我们的壳子越来越多，能用真实面对的人也越来越少，小时候有父母，但是长大后，却连家里人也无法真实面对了。</p>
+</li>
+<li><p>论迹不论心<br>书中的意思是，为善孝，论心不论迹，为恶，论迹不论心。道理也很简单，孝顺善良是要从心出发的，不能说有钱的人为父母做的多，就比穷人什么都不做孝顺，而是要看心中的孝顺；关于作恶，要看这个人做了什么，再去判他的罪，而不是他心里是怎么想的。<br>这是古人的话，私以为放到今天的社会已经不通用了。首先是关于孝顺，父母怎么感受的到你的孝顺，这个很那说，大部分还是要看迹，到最后，可能是论迹又论心。然后是关于善事，有个很明显的例子，一个人做慈善，他确实是捐了很多钱，帮到了很多人，但是他内心根本没有对这些需要帮助的人有任何同情，他只是为了名气，或者为了企业名声，或者是借助这个事情获取其他东西，我们能说这个事情是不好的吗，还是论迹不论心。最后关于做恶事，这个就是现代法律，没什么变化。</p>
+</li>
+<li><p>认知的不同程度<br>最近在看一些计算机领域的文章的时候，产生了一些关于认知的思考。<br>与我而言，我比较喜欢可以读懂，理解的比较顺畅的文章。管中窥豹，作者的水平也可见一斑。这让我想到自己，上大学的时候，收到学长的影响，喜欢写一些技术博客，一开始只敢写一些自己很了解的事情，写作的过程也比较缓慢，很多语句都需要斟酌。随着心中的那股气慢慢泻掉，同时也被一些网站的数据蒙住双眼后，写作就开始滥竽充数，开始写一些自己一知半解的东西，内容也是东拼西凑的东西，这个博客中有一些就是这种类型的文章。<br>我认为，能写出一篇让入门者和资深人员都有所收获的文章是相当难的，一定是对相关领域有所建树，至少也是掌握了全貌，有自己的理解在其中的。如果遇到读不懂的文章，也不用怀疑自己的能力，很有可能是作者就是一知半解。</p>
+</li>
+<li><p>沉浸后的空虚<br>已经很久没有这种感觉了，我总是在沉浸一个故事，从故事回到现实后，感到无尽的空虚感。这种空虚感的来源，我想一部分来自于对故事的不舍，我似乎真的是故事中的一员，身临其境的参与了整个故事。另一部分是故事与现实的割裂，故事是那么美好，现实又是如此的无趣。可能还有很多说不上来的原因，我现在还无法总结出来。<br>我想，作为一个创作者，能创作出一个故事，让别人产生这种脱离后的空虚感，都是作为创作者最大的成就，这似乎也能成为我的追求，我的心之所愿。  </p>
+</li>
+<li><p>互联网与评论<br>有意无意之间，我变得不再在互联网上做任何评论，甚至不观看别人的评论，当然，也可以称为别人的争吵。<br>并不是我自恃清高，也不是我不喜欢做评论，相反，我是一个喜欢思考和评论的人，只是如今的互联网，很难找出一个可以和平发表观点的地方。<br>我记得自己在上学期间是一个积极参与互联网各种论坛讨论的人，我第一次下载百度贴吧的时候，我还是个高中生，我惊奇的发现，在这个地方可以看到太多东西了，几乎你能想到的事物，在这里都有讨论，我还非常欣喜的与姐姐分享，她也附和了我。我并没有玩太久，因为太费时间，就卸载了。后来是上大学后，我当时喜欢玩英雄联盟，下载了微博，主要关注一些电竞比赛的新闻和讨论，第一次感受到论坛的另一面也是在微博，印象中，我和另一个人因为对一个事物的看法在一个帖子下面争吵了很久，一开始称得上讨论，然后在产生一些冲突点后，开始了帖子内容外的争吵，最后也是升级成了谩骂。<br>那件事后，我想了很多，我自己甚至有一段时间不愿想起，也不敢查看那段讨论，我不喜欢那样的自己，我认为我的家人，同学，朋友也不会喜欢那样的我，我当时因为这个原因，卸载了微博，并且到现在也没有下载回来。<br>时至今日，互联网的环境江河日下，目前已经发展到有相关法律介入的情景。整个互联网环境充斥着毫无逻辑，毫无意义的争吵，谩骂。大家也给各个论坛评定了很多名号，其含义是相关的舆论力量的汇集。例如大家把微博称为女权的汇集地，而虎扑是一些较为极端的男性主义的汇集地。无论讨论的对象本身是正是邪，讨论的内容都会变成阴阳怪气，反串等非恶意的评论，网络暴力就更是大行其道。<br>这些是环境，于我个人而言，我不屑于参与这些讨论，很多时候都是直接关闭相关的入口，这么做当然有一部分虚荣心，一种出淤泥而不染的虚荣心。但更多的，是不想自己变成自己看不上的人，也不想浪费时间和精力。<br>最后想说下环境的力量。现在回想当时在微博的讨论，一开始也是想单纯做观点的讨论，但是从某一条回复开始，讨论的性质就变了，它变成了一种较量，而相应的方式也就变成了不择手段，回复的内容变成了和讨论本身无关的东西，成为了互相攻击，咒骂，仿佛你输了就会被整个互联网的人看不起，所有人都在看你的笑话。环境的力量应该不止如此，这也必定是劣币驱逐良币的过程，环境在无监管或者监管较松的情况下，便会朝着坏的方向发展。并且我认为这个发展的方向并不可逆，唯有破后而立，重新建立一个强监管的环境方可解决。</p>
+</li>
+<li><p>自我怀疑<br>最近在准备面试，投简历的时候，发现无处可投，投出去的简历也是石沉大海，毫无音讯。不由得，我陷入了一段时间的自我怀疑。<br>首先我开始怀疑自己的能力，我自认为是一个还不错的程序员。投递的那些岗位，都是我觉得足以胜任的，但是不知道为什么，确实是没有回应。<br>然后我开始怀疑自己当初的选择。去年这个时候，我转到基础平台部门，开始做基础架构相关的工作，业务部门和基础架构部门确实是有一些不同，我当时的想法是，我做业务的能力已经足够了，我想精进自己的技术。当投简历碰壁后，我开始怀疑自己当初的选择，是不是自己搞花了自己的简历，可能从简历评估的人角度看，我是哪个方面都没有做好，什么都是半桶水，所以拒绝了我的简历。<br>最后就是无意义的胡思乱想了，我也不知道自己在想什么，总之被负面情绪包裹，整个人也没什么精神。<br>现在我想总结下这件事。第一，我的自我怀疑是自寻烦恼还是自我反思，我觉得前者多一些。最近国内的互联网都是死气沉沉，又恰逢阿里大裁员，整个招聘市场确实有一些乱，我也没有找内推，只是自己从官网投递，被选中的概率确实很小。 第二，我的能力强还是差，这一点我自己也时常反复，我觉得讨论这个没有太大的意义，评定一个人能力强弱，也不能脱离环境，场景，自说自话不会有结果的。第三，我下一步该怎么做，今天看了一些相关的问题的回答，我陷入自我怀疑的困境，主要是因为自己很长时间都只是工作，没有什么成长，进步。闲暇时间，都是在做一些消遣的事情，有时候第二天都不记得前一天做了什么，整个人浑浑噩噩的就过了这么长的时间。我还是需要找到自己热爱的事情，我必须从热爱的事情中寻找存在的意义，即使暂时不能做到，也要每天做一些小的事情，也不说成长还是进步，就是能让自己第二天可以记得住前一天干了什么，就这样。  </p>
+</li>
+<li><p>说不出口的话<br>突然想到一点，很多你的想法，对于问题的看法，因为各种原因无法说出口，过一段时间后，你对这个问题就失去了看法。  </p>
+</li>
+<li><p>性格决定命运<br>性格决定命运，随着年纪的增长，对这句话的理解就会越深。<br>我认为性格决定你命运的原因有以下几点：  </p>
+<ul>
+<li>很多机会是其他人带给你的，一个坏的性格会让你损失掉这些机会，没有人会喜欢一个性格恶劣的人，除非你有超越所有人的能力。  </li>
+<li>你的性格会让你面对很多机会时，做出一个错误的选择。</li>
+</ul>
+<p>主要是以上两点，性格真的很难改变，除非是发生了什么巨变。<br>我25岁的时候，意识到了这个问题，希望不晚，我要尽力去改变这一点。  </p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/碎片化思考/">
+                                    <span class="chip bg-color">碎片化思考</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/07/26/curl-shi-yong/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="CURL 使用">
+                        
+                        <span class="card-title">CURL 使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            记录一下curl的使用笔记
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/操作系统/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/操作系统/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/21/mac-sui-bi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="mac 随笔">
+                        
+                        <span class="card-title">mac 随笔</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            记录一些mac使用的东西
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/mac/" class="post-category">
+                                    mac
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mac/">
+                        <span class="chip bg-color">mac</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <a href="/about" target="_blank">王一</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/relife957" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wangyi3435@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1401605581" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1401605581" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+
+</html>

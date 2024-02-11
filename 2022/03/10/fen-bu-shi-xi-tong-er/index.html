@@ -1,0 +1,1124 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="分布式系统（二）, Java ">
+    <meta name="description" content="总结一下分布式系统的应用">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>分布式系统（二） | 王一的博客</title>
+    <link rel="icon" type="image/png" href="/medias/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" href="/css/prism-darcula.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">王一的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">王一的博客</div>
+        <div class="logo-desc">
+            
+            苏州大学 | 计算机科学与技术 |
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">分布式系统（二）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/分布式/">
+                                <span class="chip bg-color">分布式</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/分布式/" class="post-category">
+                                分布式
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-10
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="前"><a href="#前" class="headerlink" title="前"></a>前</h2><p>总结一下各种分布式系统对于分布式理论的应用</p>
+<h2 id="正"><a href="#正" class="headerlink" title="正"></a>正</h2><h3 id="正前"><a href="#正前" class="headerlink" title="正前"></a>正前</h3><p>从一些几个方面来介绍</p>
+<ol>
+<li>主从同步</li>
+<li>分片</li>
+<li>协调中心</li>
+</ol>
+<h3 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h3><p>主从同步的作用主要是保证高可用，将一份数据复制多份到多个节点，分为主节点、从节点或者leader和follower，其中的的问题主要是主从同步延迟导致的数据不一致问题。<br>其中主从同步和分片一般来说都是结合的，有些中间件是将二者合并的，有些是分离的</p>
+<ul>
+<li>redis<ul>
+<li>redis是读写分离的，主节点接收读写请求，从节点只接收读请求</li>
+<li>数据同步有全量同步和增量同步，（2.8版本之前只有全量同步），全量同步时发送RDB文件进行同步，增量同步是在全量同步的基础上，将新的命令发送过来。</li>
+<li>2.8版本后有无磁盘复制模式，使用这种模式，可以通过子进程将直接将RDB文件发送到从服务器。</li>
+<li>如果有多个从服务器，全部由主服务器来同步，会造成fork的子进程太多，主服务器的响应应用程序会比较受影响，所以有主-从-从的配置，由已经同步的从服务器来进行分配。</li>
+<li>读写分离的问题<ul>
+<li>延迟与不一致 ： 前置： 优化网络，同机房，监控延迟量，通知应用不再从该节点读取数据</li>
+<li>数据过期问题 ： 主节点会进行惰性删除+定时删除， 从节点不会主动删除，而是主节点来控制，所以可能会出现读取过期数据的问题，升级到3.2后，从节点接收读请求时会判断是否过期。</li>
+<li>故障切换 ： 没有哨兵的情况下，需要及时修改应用程序来切换</li>
+</ul>
+</li>
+<li>redis-cluster的分片会有不同，但是逻辑上上类似</li>
+<li>一般来说redis主从同步配合redis-sentinel使用，redis-cluster是二者功能的结合并升级</li>
+</ul>
+</li>
+<li>kafka<ul>
+<li>kafka对应的概念是副本，即每个topic的多个分片都会有多个副本（副本数可配置）来保证数据可靠性</li>
+<li>kafka的副本集为replica，其中有一个leader，来进行读写请求的处理，当leader挂掉之后，由集群controller从ISR中选举出一个新的leader（也可以设置允许从不同步的副本里选举，为脏选举），leader写入消息后，由其他副本进行拉取同步</li>
+<li>ISR（in-sync replica）即同步中的副本，isr的判断是根据一个参数，即和leader的时间差距，在这个范围内的都认为是同步中的。所以isr是一个动态的集合</li>
+<li>因为kafka只对已提交的消息进行有限度的持久化保证，所以需要保证这个已提交，在生产端可以通过重试和acks这个参数来控制，这个参数的意思是，leader写入后，多少个副本都提交后才认为写成功</li>
+<li>其中高水位是对于消费者来说，被允许读到的对大消息偏移，同时高水位也是以提交消息和未提交消息的界限</li>
+</ul>
+</li>
+<li>zookeeper<ul>
+<li>zk的的主从，是节点级别的，集群节点分为leader，follower，observer，其中leader负责读写请求，follower负责读请求，observer负责分担读请求，不参与选举</li>
+<li>对于写请求，都会有leader来处理，leader内部会有一个队列来处理，每个事件都有事务id，leader处理后，会广播给follower进行同步，当半数以上节点同步成功，提交事务</li>
+<li>对于读请求，因为可能会有部分节点同步较慢，所以无法保证强一致性，但是会保证最终一致性</li>
+</ul>
+</li>
+<li>es<ul>
+<li>es的主从，也是分片层面的，每个分片都有副本分片，对于每个写请求，都要同步给所有副本才成功， 对于读请求，会读取副本分片进行负载均衡</li>
+</ul>
+</li>
+<li>mysql<ul>
+<li>mysql的主从同步</li>
+<li>过程 ： 首先从库连接到主库时会创建一个io线程，泳衣请求主库更新的binlog，并且把收到的binlog写到一个relay log日志文件里，主库会创建一个log dump线程发送binlog，同时从库启动一个sql线程读取relay log日志文件，在从库里回放，实现最终一致性</li>
+</ul>
+</li>
+</ul>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>分片主要为了水平扩展，将数据分片，扩展了读请求的并发量。</p>
+<ul>
+<li>redis<ul>
+<li>redis分片主要是redis cluster中的hash槽，redis-cluster同时还负责主从同步和主从的选举</li>
+<li>redis-cluster引用了哈希槽的概念，一般由2^14 = 16384个槽，每个key通过crc16校验后对16383取模来决定放置哪个槽。集群中每个节点负责一部分hash槽。</li>
+<li>当增加一个节点后，需要把每个节点的一部分槽和数据迁移到新的节点，每个节点负责的槽为变少了。</li>
+<li>当下线一个节点时，需要先把该节点的槽位迁移到其他节点，然后关闭对应节点</li>
+<li>集群模式下，redis接收任何命令都是线计算槽为，然后找到对应的节点，如果节点时自身，则处理命令，否则恢复moved重定向错误，通知客户端请求正确的节点<ul>
+<li>命令行下可以加-c自动重定向</li>
+</ul>
+</li>
+<li>当集群正在发生迁移时，接收到命令后，可能发生槽的一部分数据在原来的节点，一部分在当前节点，这个时候先在自己的本地查找，如果没有找到，发送ask重定向到原来的节点。</li>
+</ul>
+</li>
+<li>kafka<ul>
+<li>kafka的分片是用于扩展集群吞吐量的，对于生产者来说，每次写入时，会通过负载均衡（轮训，随机，hash）写入其中一个分片，对于消费者来说，一个分片只能被一个实例所消费。</li>
+<li>一个topic的分区尽量会分布到不同的broker中</li>
+<li>一个topic的每一条消息，对于一个消费组来说，只能消费一次，放到分片层面，就是一个分片只能被消费组中的一个消费者消费</li>
+<li>当消费组订阅的topic数量，topic的分片数量，topic的消费者发生变化时，会触发rebalance，重新分配消费者</li>
+</ul>
+</li>
+<li>zookeeper<ul>
+<li>zk没有分片的概念，因为存储的数据都是轻量的</li>
+</ul>
+</li>
+<li>es<ul>
+<li>es的分片机制，es在创建索引时就会设置分片数量，</li>
+<li>对于读请求，首先到一个协调节点，通过文档id确定分片，然后通过轮训副本分片负载均衡，读取对应的副本分片，然后将结果返回给协调节点</li>
+<li>对于写请求， 到达协调节点后，会根据文档id确定分片，然后找到主分片所在的节点进行操作，成功后，通知到协调节点，返回给客户端</li>
+</ul>
+</li>
+<li>mysql<ul>
+<li>mysql的分片主要是分库分表，</li>
+</ul>
+</li>
+</ul>
+<h3 id="协调中心"><a href="#协调中心" class="headerlink" title="协调中心"></a>协调中心</h3><p>协调中心主要用于主从的选举和监控协调。</p>
+<ul>
+<li>redis<ul>
+<li>redis的协调中心是redis-sentinel，主要是用于主节点的自动故障转移，因为在单机的主从同步下，主节点出现故障只能自己切换</li>
+<li>哨兵也是一个集群，主要通过redis的pub/sub机制，在主库上有一个<em>_sentinel</em>:hello频道，哨兵1发布自己的的ip和端口号，哨兵2和哨兵3订阅，就可以拿到ip端口号然后进行通信，就主库下线的事情进行判断和协商</li>
+<li>哨兵向主库发送info信息，主库回复从库列表，接着，哨兵和所有从库建立连接，同时其他哨兵也会进行连接</li>
+<li>判断主库下线<ul>
+<li>主观下线，每个哨兵和主库的连接情况判断</li>
+<li>客观下线，哨兵集群对节点的判断。</li>
+<li>当有一个哨兵判断主库主观下线后，会让其他哨兵判断，其他哨兵根据自己的连接情况进行判断，当赞成票&gt;=哨兵配置quorum（节点/2）时，标记为客观下线。</li>
+</ul>
+</li>
+<li>当判断主库下线时，需要一个哨兵节点来执行主从切换，设计哨兵的选举<ul>
+<li>还是raft算法，收到大于节点数量一半的票时，成为领导者。</li>
+</ul>
+</li>
+<li>新主库的选出<ul>
+<li>过滤掉不健康的从库，（下线或者断线，没有回复ping响应）</li>
+<li>优先级高的</li>
+<li>复制偏移量最大的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>kafka<ul>
+<li>kafka的协调中心使用的是zk</li>
+<li>kafka涉及选举的有两个，<ul>
+<li>一个是broker的controller，它主要负责集群元数据的记录，broker的管理，主题创建，副本leader选举。controller的选举比较简单，就是多个broker取zk上创建/controller临时节点，第一个创建成功的就是controller，同时没有成功的节点会在这个节点下创建watcher，当对应broker挂了，其他节点就可以收到消息进行新的选举</li>
+<li>另一个时副本分片的选举，这个介绍的不多，大部分说的都是由controller来从ISR中进行选举</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>zookeeper<ul>
+<li>zk本身就是作为协调中心存在的，所以这里主要介绍它的选举机制</li>
+<li>zk使用的是zab协议，zab主要有两个模式，崩溃恢复和广播通知</li>
+<li>崩溃恢复<ul>
+<li>当leader服务器发生网络中断，宕机等异常情况时，zk集群会进入恢复模式，当选举出新的leader，并且已经有半数以上机器和leader的数据同步，退出恢复模式</li>
+</ul>
+</li>
+<li>消息广播<ul>
+<li>退出恢复模式后，进入消息广播模式，leader接收到读请求后，会讲消息广播出去，follower和observer会进行同步，当超过一般机器ack后，提交消息</li>
+<li>leader会对其他节点创建一个队列，保证数据同步</li>
+</ul>
+</li>
+<li>选举详情<ul>
+<li>当进入恢复状态后，每台机器首先会把票投给自己，然后将投票信息发出去，投票信息为（myid，zxid）myid时机器的id，zxid是当前机器最新同步的事务id，当机器收到其他机器的投票信息，会比较投票信息，首先比较zxid，大优先，然后比较myid，也是大优先，如果发现目标机器比自己更适合，就会讲投票信息更改为目标机器再次广播出去，当目标机器发现自己收到票超过半数，就成为leader，将信息同步出去。</li>
+<li>zk的节点数都是奇数，因为如果超过半数机器挂掉，集群就不可用了，那么偶数机器效果一样，还多部署一台机器，造成浪费。</li>
+<li>当follwer挂掉后，只要挂掉的机器没有超过一半，集群就是可用的，leader后面会继续同步数据</li>
+<li>当leader挂掉后，集群会停止服务，进行选举</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>es<ul>
+<li>es在7.x之前使用的是bully算法，7.x之后使用raft算法</li>
+<li>es有两种节点，主节点和数据节点，客户端节点<ul>
+<li>主节点， 主节点负责创建索引，删除索引，分配分片，用户请求可以发往任何一个节点，并由该节点分发请求，收集结果等操作，而并不需要经过主节点转发</li>
+<li>数据节点， 数据节点主要负责数据的存储和相关操作，比如索引数据的创建，修改，删除，搜索，数据节对机器配置要求比较高</li>
+<li>客户端节点， 即不做候选节点也不做数据节点的节点，只负责请求的分法，汇总，就是协调节点</li>
+<li>协调节点，逻辑上的，任何节点都可以当，当一个节点收到请求后，会把查询语句分法到其他节点，并合并各个节点的查询结果，然后返回给用户</li>
+</ul>
+</li>
+<li>es的选举算法是zen directory，不过最新的已经换了，采用集群协调模块代替旧版</li>
+<li>zen directory的主要流程时， 由master-eligoble节点发起选举，当满足一下条件后发起<ul>
+<li>当前eligoble节点不是master</li>
+<li>连接不到master</li>
+<li>超过一定数量的节点认为没有master时</li>
+</ul>
+</li>
+<li>每个eligoble会根据closterStateVersion和节点id排序， 然后选举出一个它认为的master，然后向它发送join请求，目标节点如果已经是master，就将它加入，并发布新的cluster state， 如果目标节点正在竞选，就会把这个join当作一个选票，如果目标节点认为自己选不上，就拒绝这个join请求，</li>
+<li>当收到半数以上的票后，就成为master节点。</li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/分布式/">
+                                    <span class="chip bg-color">分布式</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/03/10/fen-bu-shi-xi-tong-yi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="分布式系统（一）">
+                        
+                        <span class="card-title">分布式系统（一）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简单说一下raft算法(未完成)
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/分布式/" class="post-category">
+                                    分布式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/分布式/">
+                        <span class="chip bg-color">分布式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/28/zookeeper-jian-shu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="zookeeper简述">
+                        
+                        <span class="card-title">zookeeper简述</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简单记录一下zookeeper的问题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/分布式/" class="post-category">
+                                    分布式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/分布式/">
+                        <span class="chip bg-color">分布式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2024</span>
+            
+            <a href="/about" target="_blank">王一</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/relife957" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:wangyi3435@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1401605581" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1401605581" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false},"react":{"opacity":0.7}});</script></body>
+
+</html>
